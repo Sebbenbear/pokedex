@@ -1,4 +1,4 @@
-package Util;
+package util;
 
 import java.util.*;
 import java.io.*;
@@ -7,13 +7,11 @@ import java.io.*;
 public class PokeList <E> implements List <E> {
 
 private int maxSize = 20;
-	
 private Object[] pokemon;
 private int count = 0;
 
 //resource
 //http://www.java2novice.com/java-interview-programs/arraylist-implementation/
-
 
 //---------------------------------------------------------------------------------------------------------------
 //Constructor
