@@ -6,7 +6,10 @@ package UI;
 	public class pokedex {
 
 //fields
-	private List <Pokemon> pokemon;
+	private List <Pokemon> pokelist;
+	//private Set <Pokemon> pokeset;
+	//private Map <String, Pokemon> pokemap;
+	
 	private String selection;
 	
 //---------------------------------------------------------------------------------------------------------------
@@ -14,22 +17,29 @@ package UI;
 //---------------------------------------------------------------------------------------------------------------
 
 	public pokedex (){
-		this.pokemon = new PokeList <Pokemon> ();
+		readFile();
+		System.out.println("Welcome to my Pokedex. PokeDex loaded.");
+		homeScreen();
 	}
 	
 	public static void readFile(){
 		try {
 		Scanner sc = new Scanner(new File("pokemon.txt"));
+		//this.pokelist = new PokeList <Pokemon> ();
 		
-		//read the input into the various data structures used in the search
-		//testing purposes
 		while(sc.hasNext()){
-		System.out.println(sc.next());
+			//harvest info
+			int id = sc.nextInt();
+			String name = sc.next();
+			String type = sc.nextLine();
+			
+			//now create the object and put it in the pokelist
+			//this.pokelist.add(new Pokemon(id,name,type));
+			System.out.println(name  + type + "		" +id);
 		}
 		
-		//read these into the arraylist
-		
 		sc.close();
+		
 		} catch (IOException e) {System.out.println("Could not find the file.");}
 		
 	}
@@ -39,7 +49,6 @@ package UI;
 
 	public void homeScreen(){
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Welcome to my Pokedex.");
 		System.out.println("Please enter the capital letter of the type of search you would like. 'N' for name, 'I' for ID, of 'T' for type.");
 		this.selection = sc.next();
 		sc.close();
@@ -55,6 +64,7 @@ package UI;
 		} else if (this.selection.equals("I")){
 			searchID();
 		} else if (this.selection.equals("T")){
+			System.out.println("You have chosen to search by type.");
 			searchType();
 		} else {
 			System.out.println("I'm sorry, your selection was invalid. Please try again.");
@@ -67,7 +77,6 @@ package UI;
 	//---------------------------------------------------------------------------------------------------------------
 	public void searchName(){
 			
-		
 	}
 	//---------------------------------------------------------------------------------------------------------------
 	//Search by ID. Output = all other information on the Pokemon. Set.
@@ -87,10 +96,7 @@ package UI;
 	//Main method that runs the program
 	//---------------------------------------------------------------------------------------------------------------
 	public static void main(String[] args) {
-			// TODO Auto-generated method stub
-			System.out.println("Welcome to my Pokedex.");
-			readFile();
-		
+		new pokedex();		//call the constructor to invoke everything
 	}
 }
 

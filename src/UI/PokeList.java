@@ -3,14 +3,13 @@
 
 package UI;
 
-import java.rmi.NoSuchObjectException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class PokeList<T, E> implements List<Pokemon> {
+public class PokeList<E> implements List<Pokemon> {
 
 	private int maxSize = 20;
 	private Object[] pokemon;
@@ -39,12 +38,17 @@ public class PokeList<T, E> implements List<Pokemon> {
 				return true;
 		}
 		return false;
+		
+		/*
+		 * 
+		 */
+		
 	}
 
 	@Override
 	public Iterator <Pokemon> iterator() {
+		return null;
 		
-		return new PokeListIterator <Pokemon> ((PokeList<T, Pokemon>) this);
 	}
 	
 	
@@ -53,15 +57,16 @@ public class PokeList<T, E> implements List<Pokemon> {
 	 * 
 	 */
 	
+	@SuppressWarnings({ "hiding", "unused" })
 	private class PokeListIterator <E> implements Iterator <E>{
 		//fields
-		private PokeList <E> list;
+		private PokeList <Pokemon> list;
 		private int nextIndex;
 		private boolean canRemove = false;
 		
 		//constructor
-		public PokeListIterator (PokeList<T,E> pokeList){
-			
+		public PokeListIterator (PokeList <Pokemon> list){
+			//this.list = new PokeList <Pokemon> list;
 			
 		}
 		
@@ -73,7 +78,7 @@ public class PokeList<T, E> implements List<Pokemon> {
 		@SuppressWarnings("unchecked")
 		public E next() {
 			if(nextIndex >= list.count)
-				throw new NoSuchElementException();	//this is OOB
+				//throw new NoSuchElementException();	//this is OOB
 			canRemove = true;
 			E temp = (E) list.get(nextIndex);
 			nextIndex++;
@@ -85,7 +90,7 @@ public class PokeList<T, E> implements List<Pokemon> {
 				throw new IllegalStateException();
 			canRemove = false;
 			nextIndex--;
-			list.remove(nextIndex);
+			//list.remove(nextIndex);
 		}
 		
 	}
