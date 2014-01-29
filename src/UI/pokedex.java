@@ -4,6 +4,7 @@ package UI;
 import java.io.*;
 
 import util.PokeList;
+import util.PokeSet;
 
 	public class Pokedex {
 
@@ -20,7 +21,7 @@ import util.PokeList;
 
 	public Pokedex (){
 		readFile();
-		System.out.println("Welcome to my Pokedex. PokeDex loaded.");
+		System.out.println("Welcome to my Pokedex.");
 		homeScreen();
 	}
 	
@@ -28,6 +29,7 @@ import util.PokeList;
 		try {
 		Scanner sc = new Scanner(new File("pokemon.txt"));
 		this.pokelist = new PokeList <Pokemon> ();
+		//this.pokeset = new PokeSet <Pokemon> ();
 		
 		while(sc.hasNext()){
 			//harvest info
@@ -36,12 +38,12 @@ import util.PokeList;
 			String type = sc.nextLine();
 			
 			//now create the object and put it in the pokelist
-			this.pokelist.add(new Pokemon(id,name,type));
-			System.out.println(name  + type + "		" +id);
+			this.pokelist.add(new Pokemon(id,name,type));				//currently not adding to the array
+			//System.out.println(name  + type + "		" +id);
 		}
 		
 		sc.close();
-		
+		System.out.println("Pokedex loaded.");
 		} catch (IOException e) {System.out.println("Could not find the file.");}
 		
 	}
@@ -51,7 +53,7 @@ import util.PokeList;
 
 	public void homeScreen(){
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Please enter the capital letter of the type of search you would like. 'N' for name, 'I' for ID, of 'T' for type.");
+		System.out.println("Please enter the capital letter of the type of search you would like. 'P' for print all info, 'N' for name, 'I' for ID, of 'T' for type.");
 		this.selection = sc.next();
 		sc.close();
 		functions();
@@ -61,7 +63,10 @@ import util.PokeList;
 	//---------------------------------------------------------------------------------------------------------------
 
 	public void functions(){
-		if(this.selection.equals("N")){
+		if(this.selection.equals("P")){
+			System.out.println("You have chosen to print all info.");
+			printAllInfo();
+		} else if(this.selection.equals("N")){
 			searchName();
 		} else if (this.selection.equals("I")){
 			searchID();
@@ -74,6 +79,19 @@ import util.PokeList;
 		}
 
 	}
+	
+	//---------------------------------------------------------------------------------------------------------------
+	//Search by name. Output = all other information on the Pokemon. List.
+	//---------------------------------------------------------------------------------------------------------------
+	public void printAllInfo(){
+		//iterate through the list
+		//print out all the names
+		for(Pokemon p : pokelist){
+			System.out.println(p.toString());
+		}
+	}
+		
+		
 	//---------------------------------------------------------------------------------------------------------------
 	//Search by name. Output = all other information on the Pokemon. List.
 	//---------------------------------------------------------------------------------------------------------------

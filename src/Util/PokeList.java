@@ -11,16 +11,17 @@ import java.util.ListIterator;
 
 import UI.Pokemon;
 
-public class PokeList<E> implements List<Pokemon> {
+public class PokeList<E> implements List<Pokemon> {		//made this an abstract class
 
 	private int maxSize = 20;
-	private Object[] pokemon;
+	private E[] pokemon;
 	private int count = 0;	
 //---------------------------------------------------------------------------------------------------------------
 //Constructor
 //---------------------------------------------------------------------------------------------------------------
+	@SuppressWarnings("unchecked")
 	public PokeList(){
-	pokemon = new Object[maxSize];
+	pokemon = (E[]) new Pokemon[maxSize];		//cast E to this array, with type Pokemon elements
 	}	
 	
 	@Override
@@ -41,33 +42,22 @@ public class PokeList<E> implements List<Pokemon> {
 		}
 		return false;
 		
-		/*
-		 * 
-		 */
-		
 	}
 
 	@Override
-	public Iterator <Pokemon> iterator() {
+	public Iterator<Pokemon> iterator() {
 		return null;
 		
 	}
 	
-	
-	/*
-	 * iterator has 3 methods
-	 * 
-	 */
-	
-	@SuppressWarnings({ "hiding", "unused" })
-	private class PokeListIterator <E> implements Iterator <E>{
+	public class PokeListIterator <E> implements Iterator <E>{
 		//fields
 		private PokeList <Pokemon> list;
 		private int nextIndex;
 		private boolean canRemove = false;
 		
 		//constructor
-		public PokeListIterator (PokeList <Pokemon> list){
+		public PokeListIterator (PokeList <E> list){
 			//this.list = new PokeList <Pokemon> list;
 			
 		}
@@ -77,7 +67,6 @@ public class PokeList<E> implements List<Pokemon> {
 			return (nextIndex < list.count);
 		}
 		
-		@SuppressWarnings("unchecked")
 		public E next() {
 			if(nextIndex >= list.count)
 				//throw new NoSuchElementException();	//this is OOB
@@ -94,7 +83,6 @@ public class PokeList<E> implements List<Pokemon> {
 			nextIndex--;
 			//list.remove(nextIndex);
 		}
-		
 	}
 
 	@Override
@@ -111,12 +99,14 @@ public class PokeList<E> implements List<Pokemon> {
 
 	@Override
 	public boolean add(Pokemon e) {
+		//first check if it's nearly run out of space in the array. if yes, extend the array
 		if(pokemon.length-count <=5){									//if the count of item approaches the end of the list
 			ensureCapacity();		//, extend it , in this case you double it
 		}
-		
-		pokemon[count++] = e;		//add this value to the end of the array
+		//conditions for adding the value
+		pokemon[count++] = (E) e;		//append this value to the end of the array
 		//if it was successful, return true, if not return false
+		System.out.println(pokemon[count]);
 			return true;
 	}
 	
@@ -130,8 +120,7 @@ public class PokeList<E> implements List<Pokemon> {
 	}
 
 	@Override
-	public boolean remove(Object o) {
-		// TODO Auto-generated method stub		//TERRIBLE
+	public boolean remove(Object o){
 		int orig = this.count;
 		
 		for (int i = 0; i < pokemon.length; i++){
