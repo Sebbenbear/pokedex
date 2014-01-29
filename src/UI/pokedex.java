@@ -1,9 +1,11 @@
 package UI;
 
 	import java.util.*;
-	import java.io.*;
+import java.io.*;
 
-	public class pokedex {
+import util.PokeList;
+
+	public class Pokedex {
 
 //fields
 	private List <Pokemon> pokelist;
@@ -16,16 +18,16 @@ package UI;
 // constructor
 //---------------------------------------------------------------------------------------------------------------
 
-	public pokedex (){
+	public Pokedex (){
 		readFile();
 		System.out.println("Welcome to my Pokedex. PokeDex loaded.");
 		homeScreen();
 	}
 	
-	public static void readFile(){
+	public void readFile(){
 		try {
 		Scanner sc = new Scanner(new File("pokemon.txt"));
-		//this.pokelist = new PokeList <Pokemon> ();
+		this.pokelist = new PokeList <Pokemon> ();
 		
 		while(sc.hasNext()){
 			//harvest info
@@ -34,7 +36,7 @@ package UI;
 			String type = sc.nextLine();
 			
 			//now create the object and put it in the pokelist
-			//this.pokelist.add(new Pokemon(id,name,type));
+			this.pokelist.add(new Pokemon(id,name,type));
 			System.out.println(name  + type + "		" +id);
 		}
 		
@@ -96,7 +98,7 @@ package UI;
 	//Main method that runs the program
 	//---------------------------------------------------------------------------------------------------------------
 	public static void main(String[] args) {
-		new pokedex();		//call the constructor to invoke everything
+		new Pokedex();		//call the constructor to invoke everything
 	}
 }
 
