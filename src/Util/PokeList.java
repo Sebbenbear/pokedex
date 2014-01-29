@@ -9,9 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-import UI.Pokemon;
-
-public class PokeList<E> implements List<Pokemon> {		//made this an abstract class
+public class PokeList<E> implements List<E> {		//made this an abstract class
 
 	private int maxSize = 20;
 	private E[] pokemon;
@@ -21,7 +19,7 @@ public class PokeList<E> implements List<Pokemon> {		//made this an abstract cla
 //---------------------------------------------------------------------------------------------------------------
 	@SuppressWarnings("unchecked")
 	public PokeList(){
-	pokemon = (E[]) new Pokemon[maxSize];		//cast E to this array, with type Pokemon elements
+		pokemon = (E[]) new Object[maxSize];	//cast E to this array, with type Pokemon elements
 	}	
 	
 	@Override
@@ -45,14 +43,14 @@ public class PokeList<E> implements List<Pokemon> {		//made this an abstract cla
 	}
 
 	@Override
-	public Iterator<Pokemon> iterator() {
-		return null;
+	public Iterator<E> iterator() {
+		return new PokeListIterator(this);
 		
 	}
 	
 	public class PokeListIterator <E> implements Iterator <E>{
 		//fields
-		private PokeList <Pokemon> list;
+		private PokeList <E> list;
 		private int nextIndex;
 		private boolean canRemove = false;
 		
@@ -98,7 +96,7 @@ public class PokeList<E> implements List<Pokemon> {		//made this an abstract cla
 	}
 
 	@Override
-	public boolean add(Pokemon e) {
+	public boolean add(E e) {
 		//first check if it's nearly run out of space in the array. if yes, extend the array
 		if(pokemon.length-count <=5){									//if the count of item approaches the end of the list
 			ensureCapacity();		//, extend it , in this case you double it
@@ -144,13 +142,13 @@ public class PokeList<E> implements List<Pokemon> {		//made this an abstract cla
 	}
 
 	@Override
-	public boolean addAll(Collection<? extends Pokemon> c) {
+	public boolean addAll(Collection<? extends E> c) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean addAll(int index, Collection<? extends Pokemon> c) {
+	public boolean addAll(int index, Collection<? extends E> c) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -174,28 +172,28 @@ public class PokeList<E> implements List<Pokemon> {		//made this an abstract cla
 	}
 
 	@Override
-	public Pokemon get(int index) {
+	public E get(int index) {
 
 		if(index < count)			
-			return (Pokemon) pokemon[index];			//returns a pokemon object from this index (this is the value at that index)
+			return pokemon[index];			//returns a pokemon object from this index (this is the value at that index)
 		else 
 			throw new ArrayIndexOutOfBoundsException();
 	}
 
 	@Override
-	public Pokemon set(int index, Pokemon element) {
+	public E set(int index, E element) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void add(int index, Pokemon element) {
+	public void add(int index, E element) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Pokemon remove(int index) {
+	public E remove(int index) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -213,19 +211,19 @@ public class PokeList<E> implements List<Pokemon> {		//made this an abstract cla
 	}
 
 	@Override
-	public ListIterator<Pokemon> listIterator() {
+	public ListIterator<E> listIterator() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ListIterator<Pokemon> listIterator(int index) {
+	public ListIterator<E> listIterator(int index) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Pokemon> subList(int fromIndex, int toIndex) {
+	public List<E> subList(int fromIndex, int toIndex) {
 		// TODO Auto-generated method stub
 		return null;
 	}

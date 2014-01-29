@@ -86,6 +86,8 @@ import util.PokeSet;
 	public void printAllInfo(){
 		//iterate through the list
 		//print out all the names
+		System.out.println(pokelist);
+		System.out.println(pokelist.iterator());
 		for(Pokemon p : pokelist){
 			System.out.println(p.toString());
 		}
