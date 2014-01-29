@@ -15,7 +15,6 @@ import util.Pokemon;
 	//private Map <String, Pokemon> pokemap;
 	
 	private String selection;
-	
 //---------------------------------------------------------------------------------------------------------------
 // constructor
 //---------------------------------------------------------------------------------------------------------------
@@ -37,6 +36,7 @@ import util.Pokemon;
 			int id = sc.nextInt();
 			String name = sc.next();
 			String type = sc.nextLine();
+			
 			
 			//now create the object and put it in the pokelist
 			this.pokelist.add(new Pokemon(id,name,type));				//currently not adding to the array
@@ -87,7 +87,7 @@ import util.Pokemon;
 		System.out.println("You have chosen to print all info.");
 		
 		for(Pokemon p : pokelist){
-			System.out.println(p.getName());
+			System.out.println(p.toString());
 		}
 	}
 	//---------------------------------------------------------------------------------------------------------------

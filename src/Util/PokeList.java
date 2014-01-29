@@ -13,7 +13,7 @@ public class PokeList<E> implements List<E> {
 
 	private int maxSize = 20;
 	private E[] pokemon;
-	private int count = 1;	
+	private int count = 0;	
 //---------------------------------------------------------------------------------------------------------------
 //Constructor
 //---------------------------------------------------------------------------------------------------------------
@@ -53,7 +53,7 @@ public class PokeList<E> implements List<E> {
 		
 		//constructor
 		public PokeListIterator (PokeList <E> list){
-			//this.list = new PokeList <Pokemon> list;
+			this.list = list;		//I was making new lists each time!
 		}
 		
 		//returns true if the iterator has at least 1 more item
@@ -94,11 +94,10 @@ public class PokeList<E> implements List<E> {
 	@Override
 	public boolean add(E e) {
 		//first check if it's nearly run out of space in the array. if yes, extend the array
-		if(pokemon.length-count <=5)							
 			ensureCapacity();	
 		this.pokemon[this.count++] = e;		//append this value to the end of the array
 	
-		System.out.println(pokemon[count]);
+		System.out.println(this.pokemon[this.count-1]);
 			return true;
 			
 			
