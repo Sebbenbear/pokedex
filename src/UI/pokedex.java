@@ -5,6 +5,7 @@ import java.io.*;
 
 import util.PokeList;
 import util.PokeSet;
+import util.Pokemon;
 
 	public class Pokedex {
 
@@ -77,21 +78,18 @@ import util.PokeSet;
 			System.out.println("I'm sorry, your selection was invalid. Please try again.");
 			homeScreen();
 		}
-
 	}
-	
 	//---------------------------------------------------------------------------------------------------------------
 	//Search by name. Output = all other information on the Pokemon. List.
 	//---------------------------------------------------------------------------------------------------------------
 	public void printAllInfo(){
 		//iterate through the list
 		//print out all the names
+		
 		for(Pokemon p : pokelist){
 			System.out.println(p.toString());
 		}
 	}
-		
-		
 	//---------------------------------------------------------------------------------------------------------------
 	//Search by name. Output = all other information on the Pokemon. List.
 	//---------------------------------------------------------------------------------------------------------------

@@ -4,8 +4,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 
-import UI.Pokemon;
-
 public class PokeSet<T> implements Set<Pokemon> {
 
 	@Override
