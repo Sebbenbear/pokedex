@@ -65,7 +65,6 @@ import util.Pokemon;
 
 	public void functions(){
 		if(this.selection.equals("P")){
-			System.out.println("You have chosen to print all info.");
 			printAllInfo();
 		} else if(this.selection.equals("N")){
 			searchName();
@@ -85,9 +84,10 @@ import util.Pokemon;
 	public void printAllInfo(){
 		//iterate through the list
 		//print out all the names
+		System.out.println("You have chosen to print all info.");
 		
 		for(Pokemon p : pokelist){
-			System.out.println(p.toString());
+			System.out.println(p.getName());
 		}
 	}
 	//---------------------------------------------------------------------------------------------------------------

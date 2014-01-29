@@ -96,10 +96,13 @@ public class PokeList<E> implements List<E> {
 		//first check if it's nearly run out of space in the array. if yes, extend the array
 		if(pokemon.length-count <=5)							
 			ensureCapacity();	
-		pokemon[count+1] = e;		//append this value to the end of the array
+		this.pokemon[this.count++] = e;		//append this value to the end of the array
 	
 		System.out.println(pokemon[count]);
 			return true;
+			
+			
+			
 	}
 	
 //---------------------------------------------------------------------------------------------------------------
